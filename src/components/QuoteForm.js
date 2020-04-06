@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './QuoteForm.css';
 
-const MAX_LENGTH = 30; // Feel free to change the value
+const MAX_LENGTH = 10; // Feel free to change the value
 
 class QuoteForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      character: '',
-    };
+    this.state = {character: '',};
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -17,20 +15,30 @@ class QuoteForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({ character: event.target.value });
+    if (event.target.value.length <= MAX_LENGTH) {
+    this.setState({character: event.target.value});
+  }
   }
 
   render() {
+    
+    const {character, handleChange,handleSubmit} = this.state
+    const remaining = MAX_LENGTH - character.length
+
+    const lengthMaxReached = character.length >= MAX_LENGTH; 
     return (
-      <form className="QuoteForm" onSubmit={this.handleSubmit}>
+      <form className="QuoteForm" onSubmit={handleSubmit}>
         <label htmlFor="character">Character:</label>
         <input
+          className={lengthMaxReached ? 'length-maximum-reached' : 'length-ok'}
           id="name"
           name="character"
           type="text"
-          value={this.state.character} onChange={this.handleChange}/>
+          value={character} 
+          onChange={handleChange}/>
+          <p> {remaining} remaining character</p>
         <p>
-          You typed: <strong>{this.state.character}</strong>
+          You typed: <strong>{character.length}</strong>
         </p>
       </form>
     );
