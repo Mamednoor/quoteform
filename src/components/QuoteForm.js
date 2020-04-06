@@ -21,11 +21,13 @@ class QuoteForm extends Component {
   }
 
   render() {
-    
-    const {character, handleChange,handleSubmit} = this.state
-    const remaining = MAX_LENGTH - character.length
+
+    const {character} = this.state
+    const {handleSubmit, handleChange} = this
 
     const lengthMaxReached = character.length >= MAX_LENGTH; 
+    const remaining = MAX_LENGTH - character.length
+
     return (
       <form className="QuoteForm" onSubmit={handleSubmit}>
         <label htmlFor="character">Character:</label>
@@ -34,12 +36,12 @@ class QuoteForm extends Component {
           id="name"
           name="character"
           type="text"
-          value={character} 
+          value={character}
           onChange={handleChange}/>
-          <p> {remaining} remaining character</p>
-        <p>
-          You typed: <strong>{character.length}</strong>
-        </p>
+          <p>{remaining} remaining characteres</p>
+          <p>You typed: 
+            <strong>{character.length}</strong>
+          </p>
       </form>
     );
   }
