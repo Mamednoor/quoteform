@@ -5,38 +5,34 @@ class QuoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      character: '',};
-
+      character: '',
+    };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({character: event.target.character});
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.character);
     event.preventDefault();
   }
 
-
+  handleChange(event) {
+    this.setState({ character: event.target.value });
   }
+
   render() {
     return (
-      <form className="QuoteForm" onSubmit={event => event.preventDefault()}>
+      <form className="QuoteForm" onSubmit={this.handleSubmit}>
         <label htmlFor="character">Character:</label>
         <input
           id="name"
           name="character"
           type="text"
-          value={this.state.character} onChange={this.handleChange}
-          }}
-        />
+          value={this.state.character} onChange={this.handleChange}/>
+        <p>
+          You typed: <strong>{this.state.character}</strong>
+        </p>
       </form>
     );
   }
 }
-
 
 export default QuoteForm;
