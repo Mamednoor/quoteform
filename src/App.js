@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './components/Header';
+import Navbar from './components/Navbar';
 import QuoteForm from './components/QuoteForm';
 import QuoteList from './components/QuoteList';
 
